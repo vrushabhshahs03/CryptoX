@@ -1,0 +1,37 @@
+package com.example.cryptox.data.remote.dto
+
+import com.example.cryptox.domain.model.Coin
+import com.google.gson.annotations.SerializedName
+
+data class CoinDto(
+    @SerializedName("beta_value")
+    val betaValue: Double,
+    @SerializedName("first_data_at")
+    val firstDataAt: String,
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("last_updated")
+    val lastUpdated: String,
+    @SerializedName("max_supply")
+    val maxSupply: Long,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("quotes")
+    val quotes: Quotes,
+    @SerializedName("rank")
+    val rank: Int,
+    @SerializedName("symbol")
+    val symbol: String,
+    @SerializedName("total_supply")
+    val totalSupply: Long,
+)
+
+fun CoinDto.toCoin(): Coin {
+    return Coin(
+        coinId = id,
+        name = name,
+        symbol = symbol,
+        price = quotes,
+        rank = rank
+    )
+}
